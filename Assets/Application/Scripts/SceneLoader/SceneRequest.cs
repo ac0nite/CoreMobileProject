@@ -8,6 +8,5 @@ namespace Application.SceneLoader
         public string Name;
         public LoadSceneMode LoadMode;
         public UnloadSceneOptions UnloadOptions;
-        public event Action OnCompleted;
     }
 }
