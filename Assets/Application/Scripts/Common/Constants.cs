@@ -20,8 +20,8 @@ namespace Resources
 
         public class Resources
         {
-            public const string SplashScreen = "Applications/SplashScreen";
-            public const string LoadingScreen = "Applications/LoadingScreen";
+            public const string SplashScreen = "Application/SplashScreen";
+            public const string LoadingScreen = "Application/LoadingScreen";
             // public const string PreviewScreen = "Prefabs/Gameplay/UI/PreviewScreen";
             // public const string GameplayScreen = "Prefabs/Gameplay/UI/GameplayScreen";
             // public const string ResultScreen = "Prefabs/Gameplay/UI/ResultScreen";

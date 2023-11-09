@@ -11,6 +11,7 @@ namespace Application.UI.Screens
         public ApplicationUIInstaller(
             [Inject (Id = Constants.ID.ApplicationCanvas)] Canvas canvas)
         {
+            Debug.Log($"ApplicationUIInstaller");
             _applicationCanvas = canvas;
         }
         
