@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Application.Scripts.Services
 {
@@ -12,7 +11,7 @@ namespace Application.Scripts.Services
         public async UniTask Loading()
         {
             await UniTask.DelayFrame(1);
-            Debug.Log("SERVICES LOADED");
+            Log.Debug(Prefix.Service, "SERVICES LOADED DEBUG");
         }
     }
 }

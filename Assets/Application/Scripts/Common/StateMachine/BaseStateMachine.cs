@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Application;
 
 namespace Common.StateMachine
 {
@@ -29,13 +29,16 @@ namespace Common.StateMachine
             var internalState = _states[_currentTypeState];
             if (!internalState.IsNextState())
             {
-                Debug.LogWarning($"[FSM] Next state is empty! Current: [{_currentTypeState}]");
+                Log.Warning(Prefix.FSM, $"Next state is empty! Current: [{_currentTypeState}]");
                 return;
             }
             
             internalState.State.OnExit();
 
             _currentTypeState = internalState.NextState();
+            
+            Log.Debug(Prefix.FSM, $"Next state [{_currentTypeState}]");
+            
             _states[_currentTypeState].State.OnEnter();
         }
 
@@ -44,12 +47,14 @@ namespace Common.StateMachine
             var internalState = _states[_currentTypeState];
             if (!internalState.IsNextState(type))
             {
-                Debug.LogWarning($"[FSM] Next state is missing! Current: [{type}]");
+                Log.Warning(Prefix.FSM, "Next state is missing! Current: [{type}]");
                 return;
             }
             
             internalState.State.OnExit();
             _currentTypeState = type;
+            Log.Debug(Prefix.FSM, $"Next state [{_currentTypeState}]");
+            
             _states[_currentTypeState].State.OnEnter();
         }
 
@@ -57,19 +62,25 @@ namespace Common.StateMachine
         {
             if (!_states.ContainsKey(type))
             {
-                Debug.LogWarning($"[FSM] Force next state is missing [{type}]!");
+                Log.Warning($"[FSM] Force next state is missing [{type}]!");
                 return;
             }
             
             var internalState = _states[type];
             internalState.State.OnExit();
             _currentTypeState = type;
+            
+            Log.Debug(Prefix.FSM, $"Force next state [{_currentTypeState}]");
+            
             _states[_currentTypeState].State.OnEnter();
         }
 
         public void Run(TEnum type)
         {
             _currentTypeState = type;
+            
+            Log.Debug(Prefix.FSM, $"Run state [{_currentTypeState}]");
+            
             _states[_currentTypeState].State.OnEnter();
         }
     }

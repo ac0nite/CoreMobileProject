@@ -14,7 +14,6 @@ namespace Application.Installer
     {
         public override void InstallBindings()
         {
-            Debug.Log("ProjectContextInstaller");
             InstallStateMachine();
             InstallSignals();
             InstallLoader();

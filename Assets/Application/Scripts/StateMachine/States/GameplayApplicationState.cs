@@ -1,9 +1,8 @@
 using Application.SceneLoader;
 using Application.UI.Common;
 using Common.StateMachine;
-using Cysharp.Threading.Tasks;
+using ModestTree;
 using Resources;
-using UnityEngine;
 using Zenject;
 
 namespace Application.StateMachine.States
@@ -23,7 +22,7 @@ namespace Application.StateMachine.States
         public async void OnEnter()
         {
             await _sceneLoader.LoadSceneAsync(Constants.GameplaySceneRequest);
-            Debug.Log($"SCENE '{Constants.GameplaySceneRequest.Name}' LOADED");
+            Log.Debug(Prefix.Scene,$"'{Constants.GameplaySceneRequest.Name}' LOADED");
         }
 
         public void OnExit()

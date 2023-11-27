@@ -1,7 +1,6 @@
 using System;
 using Application.StateMachine.States;
 using Common.StateMachine;
-using UnityEngine;
 using Zenject;
 
 namespace Application.StateMachine
@@ -21,14 +20,15 @@ namespace Application.StateMachine
             GameplayApplicationState.Factory gameplayStateFactory,
             SignalBus signals)
         {
-            Debug.Log($"Application StateMachine Init");
-            
+            Log.Debug(Prefix.FSM, "Application StateMachine Init");
+
+            _signals = signals;
+
             Register(ApplicationStateEnum.LOADING, loadingStateFactory.Create()).GoesTo(ApplicationStateEnum.GAMEPLAY);
             Register(ApplicationStateEnum.GAMEPLAY, gameplayStateFactory.Create());
             
             Run(ApplicationStateEnum.LOADING);
-
-            _signals = signals;
+            
             _signals.Subscribe<ApplicationStateMachine.Signals.NextState>(ChangeState);
         }
 
